@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyWork</string>
+    <string name="date">Дата</string>
+    <string name="purpose">Цели</string>
+    <string name="createPDF">Создать PDF</string>
+</resources>
