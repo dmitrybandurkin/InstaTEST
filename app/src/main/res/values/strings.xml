@@ -3,4 +3,5 @@
     <string name="date">Дата</string>
     <string name="purpose">Цели</string>
     <string name="createPDF">Создать PDF</string>
+    <string name="numreport">№</string>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/purposeEdit"
+        android:id="@+id/purpose_dialog_input"
         android:layout_width="382dp"
         android:layout_height="473dp"
         android:ems="10"

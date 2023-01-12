@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/content_fill"/>
-    <include layout="@layout/content_create"/>
+    <include layout="@layout/content_input"/>
+    <include layout="@layout/content_output"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

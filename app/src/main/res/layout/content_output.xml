@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cr_pdflayout"
+    android:id="@+id/content_output_pdf_layout"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/date_label"
         android:layout_width="90dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
@@ -20,7 +20,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/purpose"
+        android:id="@+id/numreport_label"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/numreport"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/date_output"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/purpose_label"
         android:layout_width="90dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
@@ -29,36 +41,38 @@
         android:text="@string/purpose"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/date_label" />
 
     <TextView
-        android:id="@+id/ResultDate"
-        android:layout_width="280dp"
+        android:id="@+id/date_output"
+        android:layout_width="90dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintStart_toEndOf="@+id/date_label"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ResultPurpose"
-        android:layout_width="280dp"
+        android:id="@+id/numreport_output"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/numreport_label"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/purpose_output"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="top"
-        app:layout_constraintStart_toEndOf="@+id/purpose"
-        app:layout_constraintTop_toBottomOf="@+id/ResultDate" />
+        app:layout_constraintStart_toEndOf="@+id/purpose_label"
+        app:layout_constraintTop_toBottomOf="@+id/date_output" />
 
-    <Button
-        android:id="@+id/mybutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
