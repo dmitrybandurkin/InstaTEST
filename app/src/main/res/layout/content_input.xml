@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="@+id/purpose_input"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/purpose_input"
-        app:layout_constraintTop_toBottomOf="@+id/image_input"
+        app:layout_constraintTop_toBottomOf="@+id/image_input_1"
         app:layout_constraintVertical_bias="0.853" />
 
     <EditText
@@ -70,21 +70,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image_input"
-        android:layout_width="174dp"
-        android:layout_height="242dp"
+        android:id="@+id/image_input_1"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:onClick="MakePhoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/purpose_input"
         app:srcCompat="@drawable/border" />
 
     <ImageView
         android:id="@+id/image_input_2"
-        android:layout_width="174dp"
-        android:layout_height="242dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:onClick="MakePhoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/purpose_input"
         app:srcCompat="@drawable/border" />
