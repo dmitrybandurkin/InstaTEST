@@ -14,8 +14,9 @@ public class InputContent extends AppCompatActivity {
     private EditText purposeInput;
     private Button generatePDFbutton;
     private EditText numreportInput;
-    private ImageView image1;
-    private ImageView image2;
+    private ImageView imageInput1;
+
+    private ImageView imageInput2;
 
     public InputContent(ConstraintLayout inputContentPDF, EditText dateInput, EditText purposeInput, Button generatePDFbutton, EditText numreportInput, ImageView image1, ImageView image2) {
         this.inputContentPDF = inputContentPDF;
@@ -23,8 +24,8 @@ public class InputContent extends AppCompatActivity {
         this.purposeInput = purposeInput;
         this.generatePDFbutton = generatePDFbutton;
         this.numreportInput = numreportInput;
-        this.image1 = image1;
-        this.image2 = image2;
+        this.imageInput1 = image1;
+        this.imageInput2 = image2;
     }
 
     public ConstraintLayout getInputContentPDF() {
@@ -35,12 +36,12 @@ public class InputContent extends AppCompatActivity {
         return dateInput;
     }
 
-    public ImageView getImage1() {
-        return image1;
+    public ImageView getImageInput1() {
+        return imageInput1;
     }
 
-    public ImageView getImage2() {
-        return image2;
+    public ImageView getImageInput2() {
+        return imageInput2;
     }
 
     public EditText getPurposeInput() {
