@@ -3,13 +3,11 @@ package com.example.mywork;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -21,11 +19,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -41,10 +37,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -54,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         MenuItem createPDFButton;
         int day,month,year;
         int viewId;
-        Uri phUri;
+        Uri imageURI;
         String currentPhotoPath;
 
-        private static final String TAG = "MyApp";
+        private static final String TAG = "MyLog";
 
 
     ActivityResultLauncher<Intent> startCamera = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -65,12 +58,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK){
-                        Log.e(TAG,"Activity Ok");
+                        Log.e(TAG,"Activity result is ok");
+//                        ImageView iv = findViewById(viewId);
+//                        if (iv!=null) iv.setImageURI(imageURI);
+//                        else Log.e(TAG,"iv variable is not found");
 
-                        //Intent intent = result.getData();
-                        //Bitmap bm = (Bitmap) intent.getExtras().get("data");
-                        ImageView iv = findViewById(viewId);
-                        iv.setImageURI(phUri);
+                        ImageView iv = findViewById(R.id.image_input_1);
+                        iv.setImageURI(imageURI);
+                        Drawable drawable = inputContent.getImageInput1().getDrawable();
+                        inputContent.getImageInput2().setImageDrawable(drawable);
+
                     }
                 }
             });
@@ -107,10 +104,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         day=month=year=0;
 
-        //phUri = Uri.parse(Environment.getExternalStorageDirectory() + "/Documents/PDF/222.png");
-        //phUri = Uri.parse(Environment.getExternalStorageDirectory() + "/Documents/PDF");
-
-
         inputContent.getDateInput().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,37 +128,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
-        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        //String imageFileName = "JPEG_" + timeStamp + "_";
-        //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
-        //File my = new File(Environment.getExternalStorageDirectory() + "/Documents/PDF/");
-        String imageFileName = "JPEG_" + viewId;
-
-        File storageDir_0 = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        String imageFileName = "PNG_" + viewId;
         File storageDir = new File( Environment.getExternalStorageDirectory()+ "/Documents/PDF/");
 
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
+                ".png",         /* suffix */
                 storageDir      /* directory */
         );
-
-        // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
-        Log.e(TAG, "currentPhotoPath_2 =" + image.toString());
-        Log.e(TAG, "currentPhotoPath_3 =" + currentPhotoPath);
         return image;
     }
 
     public void MakePhoto(View view){
         viewId = view.getId();
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,phUri);
-//        Log.e(TAG, phUri.toString());
-//        startCamera.launch(cameraIntent);
-//        Log.e(TAG, phUri.toString());
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -174,29 +151,20 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             File photoFile = null;
             try {
                 photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
             }
-            // Continue only if the File was successfully created
+            catch (IOException ex) {
+                Log.e(TAG,"Exception in createImageFile()");
+            }
+
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                imageURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
-                Uri photoURI_2 = Uri.parse(photoFile.toString());
-                phUri = photoURI;
-                Log.e(TAG, "photo uri = " + photoURI.toString());
-                Log.e(TAG, "photo uri_2 = " + photoURI_2.toString());
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageURI);
                 startCamera.launch(takePictureIntent);
             }
         }
-
-
-
-
-
-
-
     }
 
     @Override
@@ -238,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         float height = displaymetrics.heightPixels;
         float width = displaymetrics.widthPixels;
+
 
         int convertHeight = (int) height, convertWidth = (int) width;
 

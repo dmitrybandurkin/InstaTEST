@@ -55,4 +55,6 @@ public class InputContent extends AppCompatActivity {
     public EditText getNumreportInput() {
         return numreportInput;
     }
+
+
 }
